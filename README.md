@@ -1,6 +1,6 @@
 # ⚡ ChainPulse — Your Wallet Tells a Story
 
-Analyze any Ethereum wallet instantly. Get a **Wallet Persona**, **On-Chain Resume**, and **Reputation Score** powered by AI.
+Analyze any Ethereum wallet instantly. Get a **Wallet Persona**, **On-Chain Resume**, and **Reputation Score** powered by **MiMo V2.5 Pro**.
 
 🔗 **Live:** [chainpulse-one.vercel.app](https://chainpulse-one.vercel.app)
 
@@ -11,9 +11,34 @@ Analyze any Ethereum wallet instantly. Get a **Wallet Persona**, **On-Chain Resu
 - **Wallet Persona** — Classify wallets into archetypes: DeFi Degen, Diamond Hands, NFT Collector, Whale Watcher, DAO Governor, Yield Farmer, Crypto Curious, On-Chain Native
 - **Reputation Score** — 0-100 score with breakdown: Consistency, Diversity, Hold Duration, Governance
 - **On-Chain Resume** — Stats grid with ETH balance, tx count, DeFi protocols, NFTs, active months
-- **AI Narrative** — AI-generated wallet story (configurable provider)
+- **AI Narrative** — AI-generated wallet story powered by MiMo V2.5 Pro
 - **Activity Timeline** — Recent transactions with protocol detection (Uniswap, Aave, Compound, OpenSea, 1inch, etc.)
 - **Share Profile** — Copy link or native share
+
+---
+
+## 🧠 AI Engine
+
+ChainPulse uses **MiMo V2.5 Pro** as its default AI engine for wallet narrative generation. MiMo analyzes on-chain behavior patterns and writes insightful, human-readable wallet profiles.
+
+> Want to use a different LLM? ChainPulse supports any **OpenAI-compatible API**. Just change the `AI_BASE_URL`, `AI_API_KEY`, and `AI_MODEL` in your environment variables.
+
+```bash
+# Default (MiMo V2.5 Pro)
+AI_BASE_URL=https://api.mimo.com/v1
+AI_API_KEY=your_mimo_key
+AI_MODEL=mimo-v2.5-pro
+
+# Or use Groq
+AI_BASE_URL=https://api.groq.com/openai/v1
+AI_API_KEY=your_groq_key
+AI_MODEL=llama-3.3-70b-versatile
+
+# Or use OpenAI
+AI_BASE_URL=https://api.openai.com/v1
+AI_API_KEY=your_openai_key
+AI_MODEL=gpt-4o-mini
+```
 
 ---
 
@@ -22,7 +47,7 @@ Analyze any Ethereum wallet instantly. Get a **Wallet Persona**, **On-Chain Resu
 - **Framework:** Next.js 15 (App Router, Turbopack)
 - **Styling:** Tailwind CSS + Radix UI
 - **Data:** Blockscout API (free, no credit card)
-- **AI:** OpenAI-compatible (MiMo V2.5 Pro, Groq, OpenAI, etc.)
+- **AI:** MiMo V2.5 Pro (OpenAI-compatible, swap to any provider)
 - **Cache:** Supabase (optional)
 - **Deploy:** Vercel
 
@@ -38,9 +63,9 @@ cd chainpulse
 # Install
 npm install
 
-# Configure (optional)
+# Configure
 cp .env.example .env.local
-# Edit .env.local with your keys
+# Edit .env.local with your MiMo API key (or other LLM provider)
 
 # Run
 npm run dev
@@ -52,15 +77,15 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## ⚙️ Environment Variables
 
-| Variable | Required | Description |
-|---|---|---|
-| `BLOCKSCOUT_API_KEY` | No | Blockscout API key (works without it) |
-| `AI_BASE_URL` | No | AI provider URL (default: MiMo V2.5 Pro) |
-| `AI_API_KEY` | No | AI provider API key |
-| `AI_MODEL` | No | Model name (default: mimo-v2.5-pro) |
-| `AI_ENABLED` | No | Set to `false` to disable AI narratives |
-| `NEXT_PUBLIC_SUPABASE_URL` | No | Supabase URL for caching |
-| `SUPABASE_SERVICE_KEY` | No | Supabase service key |
+| Variable | Required | Default | Description |
+|---|---|---|---|
+| `AI_BASE_URL` | No | `https://api.mimo.com/v1` | AI provider URL |
+| `AI_API_KEY` | No | — | Your MiMo API key (or any OpenAI-compatible key) |
+| `AI_MODEL` | No | `mimo-v2.5-pro` | Model name |
+| `AI_ENABLED` | No | `true` | Set to `false` to disable AI narratives |
+| `BLOCKSCOUT_API_KEY` | No | — | Blockscout API key (works without it) |
+| `NEXT_PUBLIC_SUPABASE_URL` | No | — | Supabase URL for caching |
+| `SUPABASE_SERVICE_KEY` | No | — | Supabase service key |
 
 ---
 
@@ -88,7 +113,7 @@ chainpulse/
 │   ├── blockscout.ts               # Blockscout API client
 │   ├── wallet-analyzer.ts          # Main analysis engine
 │   ├── persona-classifier.ts       # Persona classification logic
-│   ├── ai-narrative.ts             # AI narrative generation
+│   ├── ai-narrative.ts             # AI narrative generation (MiMo)
 │   ├── supabase.ts                 # Supabase caching
 │   └── utils.ts                    # Utilities
 └── types/
@@ -97,13 +122,13 @@ chainpulse/
 
 ---
 
-## 🧠 How It Works
+## 🧩 How It Works
 
 1. **Fetch** — Pulls address info, transactions, token balances, and NFTs from Blockscout
 2. **Analyze** — Calculates wallet age, active months, DeFi protocol usage, governance activity
 3. **Classify** — Assigns a persona based on on-chain behavior patterns
 4. **Score** — Computes reputation score (0-100) across 4 dimensions
-5. **Narrate** — Generates an AI-powered wallet story
+5. **Narrate** — MiMo V2.5 Pro generates an insightful wallet story
 6. **Cache** — Stores results in Supabase for 24h (optional)
 
 ---
