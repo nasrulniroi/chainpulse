@@ -22,7 +22,7 @@ Analyze any Ethereum wallet instantly. Get a **Wallet Persona**, **On-Chain Resu
 - **Framework:** Next.js 15 (App Router, Turbopack)
 - **Styling:** Tailwind CSS + Radix UI
 - **Data:** Blockscout API (free, no credit card)
-- **AI:** OpenAI-compatible (Groq, OpenAI, etc.)
+- **AI:** OpenAI-compatible (MiMo V2.5 Pro, Groq, OpenAI, etc.)
 - **Cache:** Supabase (optional)
 - **Deploy:** Vercel
 
@@ -55,9 +55,9 @@ Open [http://localhost:3000](http://localhost:3000)
 | Variable | Required | Description |
 |---|---|---|
 | `BLOCKSCOUT_API_KEY` | No | Blockscout API key (works without it) |
-| `AI_BASE_URL` | No | AI provider URL (default: Groq) |
+| `AI_BASE_URL` | No | AI provider URL (default: MiMo V2.5 Pro) |
 | `AI_API_KEY` | No | AI provider API key |
-| `AI_MODEL` | No | Model name (default: llama-3.3-70b-versatile) |
+| `AI_MODEL` | No | Model name (default: mimo-v2.5-pro) |
 | `AI_ENABLED` | No | Set to `false` to disable AI narratives |
 | `NEXT_PUBLIC_SUPABASE_URL` | No | Supabase URL for caching |
 | `SUPABASE_SERVICE_KEY` | No | Supabase service key |
