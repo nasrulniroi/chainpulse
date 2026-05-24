@@ -25,7 +25,7 @@ ChainPulse uses **MiMo V2.5 Pro** as its default AI engine for wallet narrative 
 
 ```bash
 # Default (MiMo V2.5 Pro)
-AI_BASE_URL=https://api.mimo.com/v1
+AI_BASE_URL=https://token-plan-sgp.xiaomimimo.com/v1
 AI_API_KEY=your_mimo_key
 AI_MODEL=mimo-v2.5-pro
 
